@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Game from './Game';
+
 
 const page = {
   WELCOME:"Welcome_Page",
@@ -40,13 +42,13 @@ class App extends React.Component{
       case page.GAME:
         return(
           <div className="App">
-            <GamePage />
+            <GamePage onClick = {this.handlePage}/>
           </div>
         )
       case page.TODO:
         return(
           <div className="App">
-            <TodoPage />
+            <TodoPage onClick = {this.handlePage}/>
           </div>
         )
       default:
@@ -65,12 +67,14 @@ class WelcomePage extends React.Component{
           <header className="App-header">
             <Clock />
             <img src={logo} className="App-logo" alt="logo" />
-              <button onClick={()=>{this.props.onClick(page.GAME)}}>
-                Start Game ! 
+            <div>
+              <button className="App_b" onClick={()=>{this.props.onClick(page.GAME)}}>
+                Start Game 
               </button>
-              <button onClick={()=>{this.props.onClick(page.TODO)}}>
+              <button className="App_b" onClick={()=>{this.props.onClick(page.TODO)}}>
                 ToDo List 
               </button>
+            </div>
           </header>
     )
   }
@@ -81,6 +85,15 @@ class GamePage extends React.Component{
     return(
       <header className="App-header">
             <h1>GAME</h1> 
+            <div>
+              <Game />
+              <button className="App_b" onClick={()=>{this.props.onClick(page.WELCOME)}}>
+                  HOME PAGE
+              </button>
+              <button className="App_b" onClick={()=>{this.props.onClick(page.TODO)}}>
+                  ToDo List 
+              </button>
+            </div>
       </header>
     )
   }
@@ -91,6 +104,14 @@ class TodoPage extends React.Component{
     return(
       <header className="App-header">
             <h1>ToDo List</h1> 
+            <div>
+              <button className="App_b" onClick={()=>{this.props.onClick(page.WELCOME)}}>
+                  HOME PAGE
+              </button>
+              <button className="App_b" onClick={()=>{this.props.onClick(page.GAME)}}>
+                Start Game 
+              </button>
+            </div>
       </header>
     )
   }
